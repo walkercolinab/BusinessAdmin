@@ -132,12 +132,17 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AdminLteController.cs" />
+    <Compile Include="DAL\BdContexto.cs" />
+    <Compile Include="DAL\DatosInicialesContexto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\HtmlHelpers.cs" />
     <Compile Include="Models\Auditoria.cs" />
     <Compile Include="Models\CobroProducto.cs" />
     <Compile Include="Models\CobroServicio.cs" />
+    <Compile Include="Models\Commons\FrontUser.cs" />
+    <Compile Include="Models\Enumeradores.cs" />
     <Compile Include="Models\Pago.cs" />
     <Compile Include="Models\Peluquero.cs" />
     <Compile Include="Models\PerfilUsuario.cs" />
@@ -145,11 +150,15 @@
     <Compile Include="Models\PermisosPerfilUsuario.cs" />
     <Compile Include="Models\PermisosUsuario.cs" />
     <Compile Include="Models\Producto.cs" />
+    <Compile Include="Models\Seguridad.cs" />
     <Compile Include="Models\Servicio.cs" />
     <Compile Include="Models\Sucursal.cs" />
     <Compile Include="Models\TipoGasto.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tags\AutenticadoAttribute.cs" />
+    <Compile Include="Tags\PermisoAttribute.cs" />
+    <Compile Include="ViewModel\LoginViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="admin-lte\css\AdminLTE.css" />
@@ -903,6 +912,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Helper\Helper.csproj">
+      <Project>{55fb885d-1283-481f-b49e-0b55d0b2482c}</Project>
+      <Name>Helper</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

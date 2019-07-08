@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BusinessAdmin.WebApp.DAL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -64,6 +65,29 @@ namespace BusinessAdmin.WebApp.Models
         public virtual ICollection<CobroServicio> CobroServicios { get; set; }
         public virtual ICollection<CobroProducto> CobroProductos { get; set; }
         public virtual ICollection<Pago> Pagos { get; set; }
+
+        private BdContexto db = new BdContexto();
+        public Usuario Obtener(int id)
+        {
+            var usuario = new Usuario();
+
+            try
+            {
+                //using (var ctx = new TestContext())
+                //{
+                db.Configuration.LazyLoadingEnabled = false;
+
+                usuario = db.Usuarios.Include("PermisosUsuario")
+                                     .Where(x => x.UsuarioID == id).SingleOrDefault();
+                //}
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+
+            return usuario;
+        }
         
     }
 }
