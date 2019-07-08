@@ -135,6 +135,20 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Auditoria.cs" />
+    <Compile Include="Models\CobroProducto.cs" />
+    <Compile Include="Models\CobroServicio.cs" />
+    <Compile Include="Models\Pago.cs" />
+    <Compile Include="Models\Peluquero.cs" />
+    <Compile Include="Models\PerfilUsuario.cs" />
+    <Compile Include="Models\Permiso.cs" />
+    <Compile Include="Models\PermisosPerfilUsuario.cs" />
+    <Compile Include="Models\PermisosUsuario.cs" />
+    <Compile Include="Models\Producto.cs" />
+    <Compile Include="Models\Servicio.cs" />
+    <Compile Include="Models\Sucursal.cs" />
+    <Compile Include="Models\TipoGasto.cs" />
+    <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -886,7 +900,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
