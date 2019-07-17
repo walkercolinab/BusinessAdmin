@@ -12,6 +12,8 @@ namespace BusinessAdmin.WebApp.Models
 
         }
 
+        public long AuditoriaID { get; set; }
+
         public DateTime Fecha { get; set; }
         public long UsuarioID { get; set; }
         public string Tabla { get; set; }

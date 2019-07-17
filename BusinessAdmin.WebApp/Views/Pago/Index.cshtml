@@ -1,0 +1,69 @@
+﻿@model IEnumerable<BusinessAdmin.WebApp.Models.Pago>
+
+@{
+    ViewBag.Title = "Lista de gastos";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Crear Nuevo", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Monto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Salida)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cambio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaPago)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EsActivo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuario.Nombres)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TipoGasto.Nombre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Monto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Salida)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cambio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaPago)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EsActivo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Usuario.Nombres)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoGasto.Nombre)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.PagoID }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.PagoID }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.PagoID })
+        </td>
+    </tr>
+}
+
+</table>

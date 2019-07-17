@@ -12,7 +12,7 @@ namespace BusinessAdmin.WebApp.ViewModel
     {
         [Required]
         [DisplayName("Nombre de usuario")]
-        public string UserName { get; set; }
+        public string NombreUsuario { get; set; }
 
         [Required]
         public string Password { get; set; }

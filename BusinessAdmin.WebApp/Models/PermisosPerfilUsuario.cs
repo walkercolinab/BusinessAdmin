@@ -10,8 +10,8 @@ namespace BusinessAdmin.WebApp.Models
     {
         [DisplayName("Identificador")]
         public int PermisosPerfilUsuarioID { get; set; }
-        public int PermisoID { get; set; }
-        public long PerfilUsuarioID { get; set; }
+        public int? PermisoID { get; set; }
+        public long? PerfilUsuarioID { get; set; }
         public virtual Permiso Permiso { get; set; }
         public virtual PerfilUsuario PerfilUsuario { get; set; }
     }

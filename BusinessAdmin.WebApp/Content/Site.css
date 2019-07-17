@@ -1,4 +1,5 @@
-﻿body {
+﻿
+/*body {
     font-size: .85em;
     font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
     color: #232323;
@@ -12,6 +13,7 @@ header, footer, nav, section {
 
 /* Styles for basic forms
 -----------------------------------------------------------*/
+/*
 fieldset {
     border: 1px solid #ddd;
     padding: 0 1.4em 1.4em 1.4em;
@@ -38,6 +40,7 @@ textarea {
 
 /* Styles for validation helpers
 -----------------------------------------------------------*/
+/*
 .field-validation-error {
     color: #f00;
 }
@@ -58,4 +61,112 @@ textarea {
 
 .validation-summary-valid {
     display: none;
+}
+
+
+.container-login{
+  width: 400px;
+  margin-right: auto;
+  margin-left: auto;
+}*/
+.smallSizeInput{
+    width: 140px!important;
+    display: inline-block;
+}
+
+.mediumSizeInput{
+    width: 250px!important;
+    display: inline-block;
+}
+
+.largeSizeInput{
+    width: 300px!important;
+    display: inline-block;
+}
+
+.smallSizeTextArea{
+    resize: none;
+    width: 300px!important;
+    height: 100px!important;
+    display: inline-block!important;
+}
+
+.mediumSizeTextArea{
+    resize: none;
+    width: 400px!important;
+    height: 100px!important;
+    display: inline-block!important;
+}
+
+.ui-datepicker-trigger{
+    padding-left: 5px!important;
+}
+
+.checkboxForm{
+    margin-top: 10px!important;
+}
+
+.input-error{
+    color: #dd4b39;
+    font-weight: 700;
+    padding-left: 5px;
+}
+
+.form-errors{
+    padding-left: 15px;
+}
+
+.form-detail{
+    padding-bottom: 10px!important;
+}
+
+.paddingLeft15{
+    padding-left: 15px;
+}
+
+.hide{
+    display: none;
+}
+
+.single-line-error-msg{
+    margin: 0px!important;
+    padding: 0px!important;
+}
+
+.table-header-autosize-col{
+    width: auto!important;
+}
+
+.table-header-active-col{
+    width: 50px!important;
+}
+
+.table-header-options-col{
+    width: 150px!important;
+}
+
+.ui-datepicker-title select{
+    color: #292828!important;
+}
+
+.container-login{
+  width: 400px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.login-title{
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.home-body img {
+  margin: auto;
+}
+
+.required:after 
+{
+    content: "*";
+    font-weight: bold;
+    color: red; 
 }

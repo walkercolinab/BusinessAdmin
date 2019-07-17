@@ -1,0 +1,40 @@
+﻿@model BusinessAdmin.WebApp.Models.TipoGasto
+
+@{
+    ViewBag.Title = "Eliminar";
+}
+
+<h2>Eliminar</h2>
+
+<h3>Esta seguro de eliminar tipo de gasto?</h3>
+<div>
+    <h4>Tipo Gasto</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EsActivo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EsActivo)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-default" /> |
+            @Html.ActionLink("Volver a lista tipo de gasto", "Index")
+        </div>
+    }
+</div>

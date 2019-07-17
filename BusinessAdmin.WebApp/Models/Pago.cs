@@ -33,10 +33,10 @@ namespace BusinessAdmin.WebApp.Models
         public bool EsActivo { get; set; }
 
         [Required(ErrorMessage = "Usuario es requerido.")]
-        public long UsuarioID { get; set; }
+        public long? UsuarioID { get; set; }
 
         [Required(ErrorMessage = "Tipo de gasto es requerido.")]
-        public long TipoGastoID { get; set; }
+        public long? TipoGastoID { get; set; }
 
         public virtual Usuario Usuario { get; set; }
         public virtual TipoGasto TipoGasto { get; set; }

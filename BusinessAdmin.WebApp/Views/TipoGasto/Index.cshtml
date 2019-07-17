@@ -1,0 +1,39 @@
+﻿@model IEnumerable<BusinessAdmin.WebApp.Models.TipoGasto>
+
+@{
+    ViewBag.Title = "Lista de tipo de gasto";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Crear Nuevo", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EsActivo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EsActivo)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.TipoGastoID }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.TipoGastoID }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.TipoGastoID })
+        </td>
+    </tr>
+}
+
+</table>

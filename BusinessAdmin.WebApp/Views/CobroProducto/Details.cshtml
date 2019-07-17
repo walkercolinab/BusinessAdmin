@@ -1,0 +1,90 @@
+﻿@model BusinessAdmin.WebApp.Models.CobroProducto
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Cobro Producto</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Monto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Monto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoPago)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoPago)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ingreso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ingreso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cambio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cambio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaCobro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaCobro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EsActivo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EsActivo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuario.Nombres)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuario.Nombres)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Producto.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Producto.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Peluquero.Nombres)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Peluquero.Nombres)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.CobroProductoID }) |
+    @Html.ActionLink("Volver a Lista de productos cobrados", "Index")
+</p>

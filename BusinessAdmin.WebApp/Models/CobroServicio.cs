@@ -37,11 +37,11 @@ namespace BusinessAdmin.WebApp.Models
 
         
         [Required(ErrorMessage = "Usuario es requerido.")]
-        public long UsuarioID { get; set; }
+        public long? UsuarioID { get; set; }
         [Required(ErrorMessage = "Servicio es requerido.")]
-        public long ServicioID { get; set; }
+        public long? ServicioID { get; set; }
         [Required(ErrorMessage = "Peluquero es requerido.")]
-        public long PeluqueroID { get; set; }
+        public long? PeluqueroID { get; set; }
 
         public virtual Usuario Usuario { get; set; }
         public virtual Servicio Servicio { get; set; }

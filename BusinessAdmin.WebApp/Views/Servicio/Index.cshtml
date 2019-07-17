@@ -1,0 +1,51 @@
+﻿@model IEnumerable<BusinessAdmin.WebApp.Models.Servicio>
+
+@{
+    ViewBag.Title = "Lista de servicios";
+}
+
+<h2>Lista de servicios</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PrecioBase)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EsActivo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sucursal.Nombre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrecioBase)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EsActivo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sucursal.Nombre)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.ServicioID }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.ServicioID }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.ServicioID })
+        </td>
+    </tr>
+}
+
+</table>

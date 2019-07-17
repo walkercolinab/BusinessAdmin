@@ -1,0 +1,80 @@
+﻿@model BusinessAdmin.WebApp.Models.Pago
+
+@{
+    ViewBag.Title = "Eliminar";
+}
+
+<h2>Eliminar</h2>
+
+<h3>Esta seguro de eliminar gasto?</h3>
+<div>
+    <h4>Pago</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Monto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Monto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Salida)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Salida)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cambio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cambio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaPago)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaPago)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EsActivo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EsActivo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuario.Nombres)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuario.Nombres)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoGasto.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoGasto.Nombre)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-default" /> |
+            @Html.ActionLink("Volver a lista de gastos", "Index")
+        </div>
+    }
+</div>

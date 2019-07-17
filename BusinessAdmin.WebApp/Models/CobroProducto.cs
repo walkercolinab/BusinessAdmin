@@ -36,11 +36,11 @@ namespace BusinessAdmin.WebApp.Models
         public bool EsActivo { get; set; }
         
         [Required(ErrorMessage = "Usuario es requerido.")]
-        public long UsuarioID { get; set; }
+        public long? UsuarioID { get; set; }
         [Required(ErrorMessage = "Producto es requerido.")]
-        public long ProductoID { get; set; }
+        public long? ProductoID { get; set; }
         [Required(ErrorMessage = "Peluquero es requerido.")]
-        public long PeluqueroID { get; set; }
+        public long? PeluqueroID { get; set; }
 
         public virtual Usuario Usuario { get; set; }
         public virtual Producto Producto { get; set; }

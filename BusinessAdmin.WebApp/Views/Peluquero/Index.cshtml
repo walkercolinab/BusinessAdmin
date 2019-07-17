@@ -1,0 +1,105 @@
+﻿@model IEnumerable<BusinessAdmin.WebApp.Models.Peluquero>
+
+@{
+    ViewBag.Title = "Lista de peluqueros";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Crear nuevo", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombres)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ApellidoPaterno)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ApellidoMaterno)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CedulaIdentidad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TelefonoFijo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TelefonoMovil)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaIngreso)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ModoContrado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PorcentajeCorte)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PorcentajeVentas)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PorcentajeSemanal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EsActivo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sucursal.Nombre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombres)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ApellidoPaterno)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ApellidoMaterno)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CedulaIdentidad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TelefonoFijo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TelefonoMovil)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaIngreso)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ModoContrado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PorcentajeCorte)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PorcentajeVentas)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PorcentajeSemanal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EsActivo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sucursal.Nombre)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.PeluqueroID }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.PeluqueroID }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.PeluqueroID })
+        </td>
+    </tr>
+}
+
+</table>

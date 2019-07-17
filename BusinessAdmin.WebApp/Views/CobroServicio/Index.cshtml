@@ -1,0 +1,81 @@
+﻿@model IEnumerable<BusinessAdmin.WebApp.Models.CobroServicio>
+
+@{
+    ViewBag.Title = "Lista de Cobro de servicios";
+}
+
+<h2>Lista de Cobro de servicios</h2>
+
+<p>
+    @Html.ActionLink("Crear Nuevo", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Monto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TipoPago)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ingreso)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cambio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaCobro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EsActivo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuario.Nombres)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Servicio.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Peluquero.Nombres)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Monto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoPago)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ingreso)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cambio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaCobro)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EsActivo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Usuario.Nombres)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Servicio.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Peluquero.Nombres)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.CobroServicioID }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.CobroServicioID }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.CobroServicioID })
+        </td>
+    </tr>
+}
+
+</table>

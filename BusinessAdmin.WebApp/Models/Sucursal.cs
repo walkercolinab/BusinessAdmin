@@ -13,7 +13,7 @@ namespace BusinessAdmin.WebApp.Models
         {
             this.EsActivo = true;
         }
-        public long SucuralID { get; set; }
+        public long SucursalID { get; set; }
 
         [Required(ErrorMessage = "Nombres es requerido.")]
         public string Nombre { get; set; }

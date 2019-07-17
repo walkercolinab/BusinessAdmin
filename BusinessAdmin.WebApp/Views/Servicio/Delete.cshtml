@@ -1,0 +1,56 @@
+﻿@model BusinessAdmin.WebApp.Models.Servicio
+
+@{
+    ViewBag.Title = "Eliminar";
+}
+
+<h2>Eliminar</h2>
+
+<h3>Esta seguro de eliminar el servicio?</h3>
+<div>
+    <h4>Servicio</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PrecioBase)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrecioBase)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EsActivo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EsActivo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sucursal.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sucursal.Nombre)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-default" /> |
+            @Html.ActionLink("Volver a lista de servicios", "Index")
+        </div>
+    }
+</div>

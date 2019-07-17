@@ -1,0 +1,66 @@
+﻿@model BusinessAdmin.WebApp.Models.Producto
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Producto</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PrecioCompra)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrecioCompra)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PrecioVenta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrecioVenta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Stock)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Stock)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EsActivo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EsActivo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sucursal.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sucursal.Nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.ProductoID }) |
+    @Html.ActionLink("Volver a lista de productos", "Index")
+</p>

@@ -1,4 +1,5 @@
 ﻿using BusinessAdmin.WebApp.DAL;
+using Helper;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -67,6 +68,55 @@ namespace BusinessAdmin.WebApp.Models
         public virtual ICollection<Pago> Pagos { get; set; }
 
         private BdContexto db = new BdContexto();
+
+        public ResponseModel Autenticarse()
+        {
+            var rm = new ResponseModel();
+
+            try
+            {
+                string passwordEncriptado = Seguridad.Encriptar(this.Password);
+                passwordEncriptado = "UABhAHMAcwB3AG8AcgBkADEA";
+                var usuario = db.Usuarios.Where(x => x.NombreUsuario == this.NombreUsuario).SingleOrDefault();
+                if (usuario != null)
+                {
+                    if (usuario.EsBloqueado)
+                    {
+                        rm.SetResponse(false, "Su cuenta a sido bloqueada. El administrador del sistema debe restablecer su password y activar su cuenta");
+                    }
+                    else if (usuario.Password == passwordEncriptado)
+                    {
+                        usuario.IntentosFallidos = 0;
+                        usuario.ConfirmarPassword = usuario.Password;
+                        db.SaveChanges();
+
+                        SessionHelper.AddUserToSession(usuario.UsuarioID.ToString());
+                        rm.SetResponse(true);
+                    }
+                    else
+                    {
+                        usuario.IntentosFallidos = usuario.IntentosFallidos + 1;
+                        usuario.ConfirmarPassword = usuario.Password;
+                        if (usuario.IntentosFallidos >= 3)
+                        {
+                            usuario.EsBloqueado = true;
+                        }
+                        db.SaveChanges();
+                        rm.SetResponse(false, "Acceso denegado al sistema");
+                    }
+                }
+                else
+                {
+                    rm.SetResponse(false, "Nombre de usuario y/o Password son incorrectos");
+                }
+
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+            return rm;
+        }
         public Usuario Obtener(int id)
         {
             var usuario = new Usuario();
@@ -87,6 +137,14 @@ namespace BusinessAdmin.WebApp.Models
             }
 
             return usuario;
+        }
+
+        public string NombreCompleto
+        {
+            get
+            {
+                return Nombres + " " + ApellidoPaterno + " " + ApellidoMaterno;
+            }
         }
         
     }

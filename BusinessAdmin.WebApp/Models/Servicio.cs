@@ -23,7 +23,7 @@ namespace BusinessAdmin.WebApp.Models
         public bool EsActivo { get; set; }
 
         [Required(ErrorMessage = "Sucursal es requerido.")]
-        public long SucursalID { get; set; }
+        public long? SucursalID { get; set; }
 
         public virtual ICollection<CobroServicio> CobroServicios { get; set; }
         public virtual Sucursal Sucursal { get; set; }

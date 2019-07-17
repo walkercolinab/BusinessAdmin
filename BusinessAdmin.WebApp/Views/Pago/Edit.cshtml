@@ -1,0 +1,85 @@
+﻿@model BusinessAdmin.WebApp.Models.Pago
+
+@{
+    ViewBag.Title = "Editar";
+}
+
+<h2>Editar</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Gasto</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.PagoID)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Monto, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Monto)
+                @Html.ValidationMessageFor(model => model.Monto)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Salida, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Salida)
+                @Html.ValidationMessageFor(model => model.Salida)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Cambio, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Cambio)
+                @Html.ValidationMessageFor(model => model.Cambio)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FechaPago, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FechaPago)
+                @Html.ValidationMessageFor(model => model.FechaPago)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EsActivo, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EsActivo)
+                @Html.ValidationMessageFor(model => model.EsActivo)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UsuarioID, "UsuarioID", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("UsuarioID", String.Empty)
+                @Html.ValidationMessageFor(model => model.UsuarioID)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TipoGastoID, "TipoGastoID", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("TipoGastoID", String.Empty)
+                @Html.ValidationMessageFor(model => model.TipoGastoID)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Guardar" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Volver a lista de gastos", "Index")
+</div>
