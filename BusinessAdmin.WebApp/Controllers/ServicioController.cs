@@ -40,8 +40,9 @@ namespace BusinessAdmin.WebApp.Controllers
         // GET: /Servicio/Create
         public ActionResult Create()
         {
-            ViewBag.SucursalID = new SelectList(db.Sucursales, "SucursalID", "Nombre");
-            return View();
+            Servicio servicio = new Servicio();
+            ViewBag.SucursalID = new SelectList(db.Sucursales.Where(x => x.EsActivo), "SucursalID", "Nombre");
+            return View(servicio);
         }
 
         // POST: /Servicio/Create
@@ -51,6 +52,21 @@ namespace BusinessAdmin.WebApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include="ServicioID,Nombre,PrecioBase,EsActivo,SucursalID")] Servicio servicio)
         {
+            // Validar si nombre existe
+            bool existeServicio = false;
+            if (db.Servicios.Any() && !string.IsNullOrEmpty(servicio.Nombre))
+            {
+                existeServicio = db.Servicios.Where(x => x.Nombre == servicio.Nombre).FirstOrDefault() == null ? false : true;
+                if (existeServicio)
+                {
+                    ModelState.AddModelError(string.Empty, "Existe el servicio con nombre: " + servicio.Nombre + ", ingrese otro nombre.");
+                }
+            }
+            // Validar que precio de venta es mayor a cero
+            if (servicio.PrecioBase <= 0)
+            {
+                ModelState.AddModelError(string.Empty, "Precio base del servicio debe ser mayor a cero.");
+            }
             if (ModelState.IsValid)
             {
                 db.Servicios.Add(servicio);
@@ -58,7 +74,7 @@ namespace BusinessAdmin.WebApp.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.SucursalID = new SelectList(db.Sucursales, "SucursalID", "Nombre", servicio.SucursalID);
+            ViewBag.SucursalID = new SelectList(db.Sucursales.Where(x => x.EsActivo), "SucursalID", "Nombre", servicio.SucursalID);
             return View(servicio);
         }
 
@@ -74,7 +90,7 @@ namespace BusinessAdmin.WebApp.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.SucursalID = new SelectList(db.Sucursales, "SucursalID", "Nombre", servicio.SucursalID);
+            ViewBag.SucursalID = new SelectList(db.Sucursales.Where(x => x.EsActivo), "SucursalID", "Nombre", servicio.SucursalID);
             return View(servicio);
         }
 
@@ -85,13 +101,31 @@ namespace BusinessAdmin.WebApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include="ServicioID,Nombre,PrecioBase,EsActivo,SucursalID")] Servicio servicio)
         {
+            // Validar si nombre existe
+            bool existeServicio = false;
+            if (db.Servicios.Any() && !string.IsNullOrEmpty(servicio.Nombre))
+            {
+                existeServicio = db.Servicios.Where(
+                    x => x.Nombre == servicio.Nombre 
+                        && x.ServicioID != servicio.ServicioID
+                        ).FirstOrDefault() == null ? false : true;
+                if (existeServicio)
+                {
+                    ModelState.AddModelError(string.Empty, "Existe el servicio con nombre: " + servicio.Nombre + ", ingrese otro nombre.");
+                }
+            }
+            // Validar que precio de venta es mayor a cero
+            if (servicio.PrecioBase <= 0)
+            {
+                ModelState.AddModelError(string.Empty, "Precio base del servicio debe ser mayor a cero.");
+            }
             if (ModelState.IsValid)
             {
                 db.Entry(servicio).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.SucursalID = new SelectList(db.Sucursales, "SucursalID", "Nombre", servicio.SucursalID);
+            ViewBag.SucursalID = new SelectList(db.Sucursales.Where(x => x.EsActivo), "SucursalID", "Nombre", servicio.SucursalID);
             return View(servicio);
         }
 
@@ -116,7 +150,9 @@ namespace BusinessAdmin.WebApp.Controllers
         public ActionResult DeleteConfirmed(long id)
         {
             Servicio servicio = db.Servicios.Find(id);
-            db.Servicios.Remove(servicio);
+            //db.Servicios.Remove(servicio);
+            servicio.EsActivo = false;
+            db.Entry(servicio).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

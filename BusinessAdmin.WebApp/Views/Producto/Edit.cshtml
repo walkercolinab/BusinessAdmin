@@ -59,7 +59,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.SucursalID, "SucursalID", new { @class = "control-label col-md-2 required" })
+            @Html.LabelFor(model => model.SucursalID, "Sucursal", new { @class = "control-label col-md-2 required" })
             <div class="col-md-10">
                 @Html.DropDownList("SucursalID", (IEnumerable<SelectListItem>)ViewBag.SucursalID, new { @class = "form-control mediumSizeInput", @readonly = "readonly" })
                 @Html.ValidationMessageFor(model => model.SucursalID, null, new { @class = "input-error" })

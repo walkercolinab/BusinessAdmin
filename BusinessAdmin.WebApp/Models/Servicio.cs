@@ -14,8 +14,10 @@ namespace BusinessAdmin.WebApp.Models
             this.EsActivo = true;
         }
         public long ServicioID { get; set; }
+        [Required(ErrorMessage = "Nombre es requerido.")]
         public string Nombre { get; set; }
 
+        [Required(ErrorMessage = "Precio base es requerido.")]
         [DisplayName("Precio base (Bs.)")]
         public double PrecioBase { get; set; }
 
@@ -23,6 +25,7 @@ namespace BusinessAdmin.WebApp.Models
         public bool EsActivo { get; set; }
 
         [Required(ErrorMessage = "Sucursal es requerido.")]
+        [DisplayName("Sucursal")]
         public long? SucursalID { get; set; }
 
         public virtual ICollection<CobroServicio> CobroServicios { get; set; }

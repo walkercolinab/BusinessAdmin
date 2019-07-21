@@ -1,65 +1,67 @@
 ﻿@model BusinessAdmin.WebApp.Models.Servicio
 
 @{
-    ViewBag.Title = "Editar";
+    ViewBag.Title = "Editar Servicio";
 }
 
-<h2>Ediart</h2>
-
-
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "Servicio", FormMethod.Post, new { @class = "box" }))
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Servicio</h4>
-        <hr />
-        @Html.ValidationSummary(true)
+        <br /><br />
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <div class="form-errors">
+                @Html.ValidationSummary(false, "Resumen de Errores: ", new { @class = "input-error" })
+            </div>
+        }
         @Html.HiddenFor(model => model.ServicioID)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Nombre, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Nombre, new { @class = "control-label col-md-2 required" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Nombre)
-                @Html.ValidationMessageFor(model => model.Nombre)
+                @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control mediumSizeInput" } })
+                @Html.ValidationMessageFor(model => model.Nombre, null, new { @class = "input-error" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.PrecioBase, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.PrecioBase, new { @class = "control-label col-md-2 required" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.PrecioBase)
-                @Html.ValidationMessageFor(model => model.PrecioBase)
+                @Html.EditorFor(model => model.PrecioBase, new { htmlAttributes = new { @class = "form-control mediumSizeInput" } })
+                @Html.ValidationMessageFor(model => model.PrecioBase, null, new { @class = "input-error" })
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group hide">
             @Html.LabelFor(model => model.EsActivo, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.EsActivo)
-                @Html.ValidationMessageFor(model => model.EsActivo)
+                @Html.ValidationMessageFor(model => model.EsActivo, null, new { @class = "input-error" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.SucursalID, "SucursalID", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.SucursalID, "Sucursal", new { @class = "control-label col-md-2 required" })
             <div class="col-md-10">
-                @Html.DropDownList("SucursalID", String.Empty)
-                @Html.ValidationMessageFor(model => model.SucursalID)
+                @Html.DropDownList("SucursalID", (IEnumerable<SelectListItem>)ViewBag.SucursalID, new { @class = "form-control mediumSizeInput", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.SucursalID, null, new { @class = "input-error" })
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Guardar" class="btn btn-default" />
+                <input type="submit" value="Editar" class="btn btn-info" />
             </div>
         </div>
     </div>
+    
+    <div class="paddingLeft15">
+        @Html.ActionLink("Volver a Lista de Servicios", "Index")
+    </div>
+    <br />
 }
-
-<div>
-    @Html.ActionLink("Volver a lista de servicios", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
