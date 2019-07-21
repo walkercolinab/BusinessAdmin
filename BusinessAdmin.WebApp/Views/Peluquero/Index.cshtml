@@ -4,102 +4,115 @@
     ViewBag.Title = "Lista de peluqueros";
 }
 
-<h2>Index</h2>
+    <div class="box">
+        <div class="box-body">
+            <p>
+                @Html.ActionLink("Crear Nuevo", "Create")
+            </p>
+        </div>
+        <div class="box-body">
+            <table id="tabla" class="table table-bordered table-striped dataTable">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Nombres)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ApellidoPaterno)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ApellidoMaterno)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CedulaIdentidad)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.TelefonoFijo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.TelefonoMovil)
+                        </th>                        
+                        <th>
+                            @Html.DisplayNameFor(model => model.EsActivo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Sucursal.Nombre)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Nombres)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ApellidoPaterno)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ApellidoMaterno)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CedulaIdentidad)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TelefonoFijo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TelefonoMovil)
+                            </td>                            
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EsActivo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Sucursal.Nombre)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Editar", "Edit", new { id = item.PeluqueroID }) |
+                                @Html.ActionLink("Detalles", "Details", new { id = item.PeluqueroID }) |
+                                @Html.ActionLink("Eliminar", "Delete", new { id = item.PeluqueroID })
+                            </td>
+                        </tr>
+                    }
+               </tbody>
+            </table>
+        </div>
+    </div>
 
-<p>
-    @Html.ActionLink("Crear nuevo", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Nombres)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ApellidoPaterno)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ApellidoMaterno)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CedulaIdentidad)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TelefonoFijo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TelefonoMovil)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FechaIngreso)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ModoContrado)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PorcentajeCorte)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PorcentajeVentas)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PorcentajeSemanal)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EsActivo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Sucursal.Nombre)
-        </th>
-        <th></th>
-    </tr>
+                      @section Scripts {
+                          @Scripts.Render("~/bundles/jqueryval")
+                          @Scripts.Render("~/bundles/jqueryui")
+                          @Scripts.Render("~/bundles/jquery.dataTables")
+                          <script type="text/javascript">
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nombres)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ApellidoPaterno)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ApellidoMaterno)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CedulaIdentidad)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TelefonoFijo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TelefonoMovil)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FechaIngreso)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ModoContrado)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PorcentajeCorte)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PorcentajeVentas)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PorcentajeSemanal)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EsActivo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Sucursal.Nombre)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.PeluqueroID }) |
-            @Html.ActionLink("Detalles", "Details", new { id=item.PeluqueroID }) |
-            @Html.ActionLink("Eliminar", "Delete", new { id=item.PeluqueroID })
-        </td>
-    </tr>
-}
+                              $(document).ready(function () {
+                                  $(function () {
+                                      $('#tabla').DataTable({
+                                          "pagingType": "full_numbers",
+                                          "oLanguage": {
+                                              "sSortAscending": ": activar para ordenar la columna ascendente",
+                                              "sSortDescending": ": activar para ordenar la columna descendente",
+                                              "sEmptyTable": "No hay datos disponibles en la tabla",
+                                              "sInfo": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
+                                              "sInfoEmpty": "Mostrando 0 a 0 de 0 entradas",
+                                              "sInfoFiltered": "(filtrado de _MAX_ entradas en total)",
+                                              "sLengthMenu": "Mostrar _MENU_ entradas",
+                                              "sLoadingRecords": "Cargando...",
+                                              "sProcessing": "Procesando...",
+                                              "sZeroRecords": "No se encontraron registros coincidentes",
+                                              "sSearch": "Buscar:",
+                                              "oPaginate": {
+                                                  "sFirst": "Primero",
+                                                  "sPrevious": "Previo",
+                                                  "sNext": "Siguiente",
+                                                  "sLast": "Ultimo"
+                                              }
+                                          }
+                                      });
+                                  });
+                              });
 
-</table>
+                          </script>
+                      }

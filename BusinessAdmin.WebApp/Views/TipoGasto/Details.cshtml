@@ -1,16 +1,13 @@
 ﻿@model BusinessAdmin.WebApp.Models.TipoGasto
 
 @{
-    ViewBag.Title = "Detalles";
+    ViewBag.Title = "Detalle de tipo de gasto: " + @Model.Nombre;
 }
 
-<h2>Detalles</h2>
-
-<div>
-    <h4>Tipo Gasto</h4>
-	<hr />
+<div class="box">
+    <br />
     <dl class="dl-horizontal">
-        <dt>
+        <dt class="form-detail">
             @Html.DisplayNameFor(model => model.Nombre)
         </dt>
 
@@ -18,17 +15,20 @@
             @Html.DisplayFor(model => model.Nombre)
         </dd>
 
-        <dt>
+        <dt class="form-detail hide">
             @Html.DisplayNameFor(model => model.EsActivo)
         </dt>
 
-        <dd>
+        <dd class="hide">
             @Html.DisplayFor(model => model.EsActivo)
         </dd>
 
     </dl>
+
+    <div class="paddingLeft15">
+        @Html.ActionLink("Editar", "Edit", new { id = Model.TipoGastoID })<span> | </span>
+
+        @Html.ActionLink("Volver a Lista de Tipos de Gasto", "Index")
+    </div>
+    <br />
 </div>
-<p>
-    @Html.ActionLink("Editar", "Edit", new { id = Model.TipoGastoID }) |
-    @Html.ActionLink("Volver a lista tipo de gasto", "Index")
-</p>

@@ -1,17 +1,21 @@
 ﻿@model BusinessAdmin.WebApp.Models.TipoGasto
 
 @{
-    ViewBag.Title = "Eliminar";
+    ViewBag.Title = "Eliminar Tipo de Gasto";
 }
 
-<h2>Eliminar</h2>
-
-<h3>Esta seguro de eliminar tipo de gasto?</h3>
-<div>
-    <h4>Tipo Gasto</h4>
-    <hr />
+<div class="box">
+    <br />
+    <h4 class="paddingLeft15">Esta seguro de eliminar el tipo de gasto?</h4>
+    <br />
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="form-errors">
+            @Html.ValidationSummary(false, "Resumen de Errores: ", new { @class = "input-error" })
+        </div>
+    }
     <dl class="dl-horizontal">
-        <dt>
+        <dt class="form-detail">
             @Html.DisplayNameFor(model => model.Nombre)
         </dt>
 
@@ -19,22 +23,23 @@
             @Html.DisplayFor(model => model.Nombre)
         </dd>
 
-        <dt>
+        <dt class="form-detail hide">
             @Html.DisplayNameFor(model => model.EsActivo)
         </dt>
 
-        <dd>
+        <dd class="hide">
             @Html.DisplayFor(model => model.EsActivo)
         </dd>
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Eliminar" class="btn btn-default" /> |
-            @Html.ActionLink("Volver a lista tipo de gasto", "Index")
+            <input type="submit" value="Eliminar" class="btn btn-info" /> |
+            @Html.ActionLink("Volver a Lista Tipos de Gasto", "Index")
         </div>
     }
 </div>

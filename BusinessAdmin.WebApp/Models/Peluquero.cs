@@ -10,6 +10,10 @@ namespace BusinessAdmin.WebApp.Models
 {
     public class Peluquero
     {
+        public Peluquero()
+        {
+            this.EsActivo = true;
+        }
         public long PeluqueroID { get; set; }
 
         [Required(ErrorMessage = "Nombres es requerido.")]
@@ -56,6 +60,7 @@ namespace BusinessAdmin.WebApp.Models
         public bool EsActivo { get; set; }
 
         [Required(ErrorMessage = "Sucursal es requerido.")]
+        [DisplayName("Sucursal")]
         public long? SucursalID { get; set; }
         [ForeignKey("SucursalID")]
         public virtual Sucursal Sucursal { get; set; }

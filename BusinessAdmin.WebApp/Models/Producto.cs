@@ -15,10 +15,14 @@ namespace BusinessAdmin.WebApp.Models
             this.Stock = 0;
         }
         public long ProductoID { get; set; }
+        [Required(ErrorMessage = "Nombre es requerido.")]
         public string Nombre { get; set; }
 
+        [Required(ErrorMessage = "Precio de compra es requerido.")]
         [DisplayName("Precio de compra (Bs.)")]
         public double PrecioCompra { get; set; }
+
+        [Required(ErrorMessage = "Precio de venta es requerido.")]
 
         [DisplayName("Precio de venta (Bs.)")]
         public double PrecioVenta { get; set; }
@@ -30,6 +34,7 @@ namespace BusinessAdmin.WebApp.Models
         public bool EsActivo { get; set; }
 
         [Required(ErrorMessage = "Sucursal es requerido.")]
+        [DisplayName("Sucursal")]
         public long? SucursalID { get; set; }
 
         public virtual ICollection<CobroProducto> CobroProductos { get; set; }

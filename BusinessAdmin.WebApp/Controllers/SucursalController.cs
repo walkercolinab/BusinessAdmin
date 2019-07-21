@@ -50,6 +50,16 @@ namespace BusinessAdmin.WebApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include="SucursalID,Nombre,Direccion,TelefonoFijo,TelefonoMovil,EsActivo")] Sucursal sucursal)
         {
+            // Validar si nombre existe
+            bool existeSucursal = false;
+            if (db.Sucursales.Any() && !string.IsNullOrEmpty(sucursal.Nombre))
+            {
+                existeSucursal = db.Sucursales.Where(x => x.Nombre == sucursal.Nombre).FirstOrDefault() == null ? false : true;
+                if(existeSucursal)
+                {
+                    ModelState.AddModelError(string.Empty, "Existe la sucursal con nombre: " + sucursal.Nombre + ", ingrese otro nombre.");
+                }
+            }
             if (ModelState.IsValid)
             {
                 db.Sucursales.Add(sucursal);
@@ -82,6 +92,16 @@ namespace BusinessAdmin.WebApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include="SucursalID,Nombre,Direccion,TelefonoFijo,TelefonoMovil,EsActivo")] Sucursal sucursal)
         {
+            // Validar si nombre existe
+            bool existeSucursal = false;
+            if (db.Sucursales.Any() && !string.IsNullOrEmpty(sucursal.Nombre))
+            {
+                existeSucursal = db.Sucursales.Where(x => x.Nombre == sucursal.Nombre && x.SucursalID != sucursal.SucursalID).FirstOrDefault() == null ? false : true;
+                if (existeSucursal)
+                {
+                    ModelState.AddModelError(string.Empty, "Existe la sucursal con nombre: " + sucursal.Nombre + ", ingrese otro nombre.");
+                }
+            }
             if (ModelState.IsValid)
             {
                 db.Entry(sucursal).State = EntityState.Modified;

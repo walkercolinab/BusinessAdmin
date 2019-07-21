@@ -43,7 +43,7 @@
                 <li class="@Html.MenuIsActive(new string[] { "Sucursal", "Producto", "Servicio", "Peluquero" })">
                     <a href="#">
                         <i class="fa fa-edit"></i>
-                        <span>Modulo catalogos generales</span>
+                        <span>Modulo catalogos</span>
                         <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
@@ -56,13 +56,25 @@
                 <li class="@Html.MenuIsActive(new string[] { "CobroServicio", "CobroProducto" })">
                     <a href="#">
                         <i class="fa fa-edit"></i>
-                        <span>Modulo Cobros y Gastos</span>
+                        <span>Modulo Cobros</span>
                         <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
                         <li class="@Html.SubMenuIsActive("CobroServicio")"><a href="@Url.Action("Index", "CobroServicio")"><i class="fa fa-circle-o"></i> Cobro Servicios</a></li>
-                        <li class="@Html.SubMenuIsActive("CobroProducto")"><a href="@Url.Action("Index", "CobroProducto")"><i class="fa fa-circle-o"></i> Cobro Productos</a></li>
-                        <li class="@Html.SubMenuIsActive("Pago")"><a href="@Url.Action("Index", "Pago")"><i class="fa fa-circle-o"></i> Gastos</a></li>
+                        <li class="@Html.SubMenuIsActive("CobroProducto")"><a href="@Url.Action("Index", "CobroProducto")"><i class="fa fa-circle-o"></i> Cobro Productos</a></li>                        
+                    </ul>
+                </li>
+                <li class="@Html.MenuIsActive(new string[] { "Pago", "TipoGasto" })">
+                    <a href="#">
+                        <i class="fa fa-edit"></i>
+                        <span>Modulo Gastos</span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="@Html.SubMenuIsActive("TipoGasto")"><a href="@Url.Action("Index", "TipoGasto")"><i class="fa fa-circle-o"></i> Tipo de Gastos</a></li>
+                    </ul>
+                    <ul class="treeview-menu">                        
+                        <li class="@Html.SubMenuIsActive("Pago")"><a href="@Url.Action("Index", "Pago")"><i class="fa fa-circle-o"></i> Registrar Gastos</a></li>
                     </ul>
                 </li>
             </ul>

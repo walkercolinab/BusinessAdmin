@@ -1,57 +1,59 @@
 ﻿@model BusinessAdmin.WebApp.Models.Pago
 
 @{
-    ViewBag.Title = "Crear";
+    ViewBag.Title = "Crear Gasto";
 }
 
-<h2>Crear</h2>
-
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Create", "Pago", FormMethod.Post, new { @class = "box" })) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Gasto</h4>
-        <hr />
-        @Html.ValidationSummary(true)
+        <br /><br />
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <div class="form-errors">
+                @Html.ValidationSummary(false, "Resumen de Errores: ", new { @class = "input-error" })
+            </div>
+        }
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Monto, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Monto, new { @class = "control-label col-md-2 required" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Monto)
-                @Html.ValidationMessageFor(model => model.Monto)
+                @Html.EditorFor(model => model.Monto, new { htmlAttributes = new { @class = "form-control mediumSizeInput" } })
+                @Html.ValidationMessageFor(model => model.Monto, null, new { @class = "input-error" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Salida, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Salida, new { @class = "control-label col-md-2 required" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Salida)
-                @Html.ValidationMessageFor(model => model.Salida)
+                @Html.EditorFor(model => model.Salida, new { htmlAttributes = new { @class = "form-control mediumSizeInput" } })
+                @Html.ValidationMessageFor(model => model.Salida, null, new { @class = "input-error" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Cambio, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Cambio, new { @class = "control-label col-md-2 required" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Cambio)
-                @Html.ValidationMessageFor(model => model.Cambio)
+                @Html.EditorFor(model => model.Cambio, new { htmlAttributes = new { @class = "form-control mediumSizeInput" } })
+                @Html.ValidationMessageFor(model => model.Cambio, null, new { @class = "input-error" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.FechaPago, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.FechaPago, new { @class = "control-label col-md-2 required" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.FechaPago)
-                @Html.ValidationMessageFor(model => model.FechaPago)
+                @Html.EditorFor(model => model.FechaPago, "{0:dd/MM/yyyy}", new { htmlAttributes = new { @class = "form-control mediumSizeInput" } })                
+                @Html.ValidationMessageFor(model => model.FechaPago, null, new { @class = "input-error" })
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group hide">
             @Html.LabelFor(model => model.EsActivo, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.EsActivo)
-                @Html.ValidationMessageFor(model => model.EsActivo)
+                @Html.ValidationMessageFor(model => model.EsActivo, "", new { @class = "input-error" })
             </div>
         </div>
 
@@ -73,12 +75,19 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Crear" class="btn btn-default" />
+                <input type="submit" value="Crear" class="btn btn-info" />
             </div>
         </div>
     </div>
+
+    <div class="paddingLeft15">
+        @Html.ActionLink("Volver a Lista", "Index")
+    </div>
+    <br />
 }
 
-<div>
-    @Html.ActionLink("Volver a lista de gastos", "Index")
-</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+}

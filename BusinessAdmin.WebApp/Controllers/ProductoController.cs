@@ -40,8 +40,9 @@ namespace BusinessAdmin.WebApp.Controllers
         // GET: /Producto/Create
         public ActionResult Create()
         {
-            ViewBag.SucursalID = new SelectList(db.Sucursales, "SucursalID", "Nombre");
-            return View();
+            Producto producto = new Producto();
+            ViewBag.SucursalID = new SelectList(db.Sucursales.Where(x => x.EsActivo), "SucursalID", "Nombre");
+            return View(producto);
         }
 
         // POST: /Producto/Create
@@ -51,6 +52,26 @@ namespace BusinessAdmin.WebApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include="ProductoID,Nombre,PrecioCompra,PrecioVenta,Stock,EsActivo,SucursalID")] Producto producto)
         {
+            // Validar si nombre existe
+            bool existeProducto = false;
+            if (db.Productos.Any() && !string.IsNullOrEmpty(producto.Nombre))
+            {
+                existeProducto = db.Productos.Where(x => x.Nombre == producto.Nombre).FirstOrDefault() == null ? false : true;
+                if (existeProducto)
+                {
+                    ModelState.AddModelError(string.Empty, "Existe el producto con nombre: " + producto.Nombre + ", ingrese otro nombre.");
+                }
+            }
+            // Validar que precio de venta es mayor a cero
+            if (producto.PrecioVenta <= 0)
+            {
+                ModelState.AddModelError(string.Empty, "Precio de venta del producto debe ser mayor a cero.");
+            }
+            // Validar que precio de venta es mayor a cero
+            if (producto.PrecioCompra <= 0)
+            {
+                ModelState.AddModelError(string.Empty, "Precio de compra del producto debe ser mayor a cero.");
+            }
             if (ModelState.IsValid)
             {
                 db.Productos.Add(producto);
@@ -58,7 +79,7 @@ namespace BusinessAdmin.WebApp.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.SucursalID = new SelectList(db.Sucursales, "SucursalID", "Nombre", producto.SucursalID);
+            ViewBag.SucursalID = new SelectList(db.Sucursales.Where(x => x.EsActivo), "SucursalID", "Nombre", producto.SucursalID);
             return View(producto);
         }
 
@@ -74,7 +95,7 @@ namespace BusinessAdmin.WebApp.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.SucursalID = new SelectList(db.Sucursales, "SucursalID", "Nombre", producto.SucursalID);
+            ViewBag.SucursalID = new SelectList(db.Sucursales.Where(x => x.EsActivo), "SucursalID", "Nombre", producto.SucursalID);
             return View(producto);
         }
 
@@ -85,13 +106,33 @@ namespace BusinessAdmin.WebApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include="ProductoID,Nombre,PrecioCompra,PrecioVenta,Stock,EsActivo,SucursalID")] Producto producto)
         {
+            // Validar si nombre existe
+            bool existeProducto = false;
+            if (db.Productos.Any() && !string.IsNullOrEmpty(producto.Nombre))
+            {
+                existeProducto = db.Productos.Where(x => x.Nombre == producto.Nombre && x.ProductoID != producto.ProductoID).FirstOrDefault() == null ? false : true;
+                if (existeProducto)
+                {
+                    ModelState.AddModelError(string.Empty, "Existe el producto con nombre: " + producto.Nombre + ", ingrese otro nombre.");
+                }
+            }
+            // Validar que precio de venta es mayor a cero
+            if (producto.PrecioVenta <= 0)
+            {
+                ModelState.AddModelError(string.Empty, "Precio de venta del producto debe ser mayor a cero.");
+            }
+            // Validar que precio de venta es mayor a cero
+            if (producto.PrecioCompra <= 0)
+            {
+                ModelState.AddModelError(string.Empty, "Precio de compra del producto debe ser mayor a cero.");
+            }
             if (ModelState.IsValid)
             {
                 db.Entry(producto).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.SucursalID = new SelectList(db.Sucursales, "SucursalID", "Nombre", producto.SucursalID);
+            ViewBag.SucursalID = new SelectList(db.Sucursales.Where(x => x.EsActivo), "SucursalID", "Nombre", producto.SucursalID);
             return View(producto);
         }
 
@@ -116,9 +157,11 @@ namespace BusinessAdmin.WebApp.Controllers
         public ActionResult DeleteConfirmed(long id)
         {
             Producto producto = db.Productos.Find(id);
-            db.Productos.Remove(producto);
+            //db.Productos.Remove(producto);
+            producto.EsActivo = false;
+            db.Entry(producto).State = EntityState.Modified;
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index");            
         }
 
         protected override void Dispose(bool disposing)

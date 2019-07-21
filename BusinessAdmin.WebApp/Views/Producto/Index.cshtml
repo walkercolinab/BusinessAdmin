@@ -1,63 +1,105 @@
 ﻿@model IEnumerable<BusinessAdmin.WebApp.Models.Producto>
 
-@{
-    ViewBag.Title = "Lista de Productos";
-}
+    @{
+        ViewBag.Title = "Lista de Productos";
+    }
 
-<h2>Index</h2>
+    <div class="box">
+        <div class="box-body">
+            <p>
+                @Html.ActionLink("Crear Nuevo", "Create")
+            </p>
+        </div>
+        <div class="box-body">
+            <table id="tabla" class="table table-bordered table-striped dataTable">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Nombre)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PrecioCompra)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PrecioVenta)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Stock)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.EsActivo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Sucursal.Nombre)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Nombre)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PrecioCompra)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PrecioVenta)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Stock)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EsActivo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Sucursal.Nombre)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Editar", "Edit", new { id = item.ProductoID }) |
+                                @Html.ActionLink("Detalles", "Details", new { id = item.ProductoID }) |
+                                @Html.ActionLink("Eliminar", "Delete", new { id = item.ProductoID })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+        @Scripts.Render("~/bundles/jqueryui")
+        @Scripts.Render("~/bundles/jquery.dataTables")
+        <script type="text/javascript">
 
-<p>
-    @Html.ActionLink("Crear Nuevo", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PrecioCompra)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PrecioVenta)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Stock)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EsActivo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Sucursal.Nombre)
-        </th>
-        <th></th>
-    </tr>
+            $(document).ready(function () {
+                $(function () {
+                    $('#tabla').DataTable({
+                        "pagingType": "full_numbers",
+                        "oLanguage": {
+                            "sSortAscending": ": activar para ordenar la columna ascendente",
+                            "sSortDescending": ": activar para ordenar la columna descendente",
+                            "sEmptyTable": "No hay datos disponibles en la tabla",
+                            "sInfo": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
+                            "sInfoEmpty": "Mostrando 0 a 0 de 0 entradas",
+                            "sInfoFiltered": "(filtrado de _MAX_ entradas en total)",
+                            "sLengthMenu": "Mostrar _MENU_ entradas",
+                            "sLoadingRecords": "Cargando...",
+                            "sProcessing": "Procesando...",
+                            "sZeroRecords": "No se encontraron registros coincidentes",
+                            "sSearch": "Buscar:",
+                            "oPaginate": {
+                                "sFirst": "Primero",
+                                "sPrevious": "Previo",
+                                "sNext": "Siguiente",
+                                "sLast": "Ultimo"
+                            }
+                        }
+                    });
+                });
+            });
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PrecioCompra)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PrecioVenta)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Stock)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EsActivo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Sucursal.Nombre)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.ProductoID }) |
-            @Html.ActionLink("Detalles", "Details", new { id=item.ProductoID }) |
-            @Html.ActionLink("Eliminar", "Delete", new { id=item.ProductoID })
-        </td>
-    </tr>
-}
-
-</table>
+        </script>
+    }

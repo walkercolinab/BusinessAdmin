@@ -76,7 +76,7 @@ namespace BusinessAdmin.WebApp.Models
             try
             {
                 string passwordEncriptado = Seguridad.Encriptar(this.Password);
-                passwordEncriptado = "UABhAHMAcwB3AG8AcgBkADEA";
+                //passwordEncriptado = "UABhAHMAcwB3AG8AcgBkADEA";
                 var usuario = db.Usuarios.Where(x => x.NombreUsuario == this.NombreUsuario).SingleOrDefault();
                 if (usuario != null)
                 {
